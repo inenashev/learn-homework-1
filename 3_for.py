@@ -25,10 +25,16 @@ def mean_arr(arr):
     return sum(arr)/len(arr)
 
 def sum_by_product(all_data):
-    print("-----Продажи по товарам------")
+    print("-----Суммарные продажи по товарам------")
     for d in all_data:
         print(f"Продукт: {d['product']}: {sum_arr(d['items_sold'])}")
         print()
+
+def mean_by_product(all_data):
+    print("-----Средние продажи по товарам------")
+    for d in all_data:
+        print(f"Продукт: {d['product']}: {mean_arr(d['items_sold'])}")
+    print()
 
 
 def main():
@@ -42,8 +48,8 @@ def main():
         {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
     ]
 
-    sum_by_product(data)
-
+    #sum_by_product(data)
+    #mean_by_product(data)
 
 if __name__ == "__main__":
     main()
