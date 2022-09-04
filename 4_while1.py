@@ -16,11 +16,11 @@ def hello_user():
     """
     while True:
         user_input = input("Как дела? ")
-        print("Соберись")
+
         if user_input == "Хорошо": # а может lower и хорошо?
             print("Так то лучше")
             break
-
+        print("Соберись")
 
 
 
