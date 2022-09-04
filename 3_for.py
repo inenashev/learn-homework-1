@@ -39,12 +39,26 @@ def mean_by_product(all_data):
     print()
 
 
+
 def sum_all(all_data):
+    res = 0
+    for d in all_data:
+        res = + sum_arr(d['items_sold'])
+    return res
+
+
+def print_sum_all(all_data):
+    print("-----Суммарные продажи по товарам------")
+    print(f"Всего продано: {sum_all(all_data)}")
+
+
+def mean_all(all_data):
     print("-----Суммарные продажи по товарам------")
     res = 0
     for d in all_data:
         res = + sum_arr(d['items_sold'])
     print(f"Всего продано: {res}")
+
 
 
 def main():
