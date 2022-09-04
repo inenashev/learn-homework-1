@@ -27,6 +27,8 @@ def ask_user(answers_dict):
         if response:
             print("Ответ: ", response)
             break
+        elif user_input == "выпустите меня":
+            break
         else:
             print("Спроси что то еще")
 
