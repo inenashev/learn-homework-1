@@ -40,6 +40,7 @@ def mean_by_product(all_data):
 
 
 
+
 def sum_all(all_data):
     res = 0
     for d in all_data:
@@ -47,18 +48,21 @@ def sum_all(all_data):
     return res
 
 
+
 def print_sum_all(all_data):
     print("-----Суммарные продажи по товарам------")
     print(f"Всего продано: {sum_all(all_data)}")
+    print()
 
 
 def mean_all(all_data):
-    print("-----Суммарные продажи по товарам------")
-    res = 0
-    for d in all_data:
-        res = + sum_arr(d['items_sold'])
-    print(f"Всего продано: {res}")
+    prod_cnt = len(all_data) #так делать плохо, но раз у нас данные простые и хорошие то ок
+    return sum_all(all_data)/prod_cnt
 
+def print_mean_all(all_data):
+    print("-----Суммарные продажи по товарам------")
+    print(f"Всего продано: {mean_all(all_data)}")
+    print()
 
 
 def main():
@@ -72,10 +76,10 @@ def main():
         {'product': 'Samsung Galaxy 21', 'items_sold': [343, 390, 238, 437, 214, 494, 441, 518, 212, 288, 272, 247]},
     ]
 
-    # sum_by_product(data)
-    # mean_by_product(data)
-    # sum_all(data)
-
+    sum_by_product(data)
+    mean_by_product(data)
+    print_sum_all(data)
+    print_mean_all(data)
 
 if __name__ == "__main__":
     main()
