@@ -24,7 +24,6 @@ def occupation_by_age(age):
     18 <= age <= 23 - вуз
     age >23 - работать
     """
-    age = int(age)
 
     if age < 7:
         return "детский сад"
@@ -42,7 +41,7 @@ def main():
     В ней надо заменить pass на ваш код
     """
     #pass
-    age = input("input your age: ")
+    age = int(input("input your age: "))
     occ = occupation_by_age(age)
     print(occ)
 
