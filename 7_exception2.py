@@ -13,6 +13,7 @@
 
 """
 
+
 def discounted_unsafe(price, discount, max_discount=20):
     price = abs(price)
     discount = abs(discount)
@@ -24,15 +25,16 @@ def discounted_unsafe(price, discount, max_discount=20):
     else:
         return price - (price * discount / 100)
 
+
 def discounted(price, discount, max_discount=20):
     try:
         price_float = float(price)
         discount_float = float(discount)
         max_discount_int = int(max_discount)
-        return discounted_unsafe(price_float,discount_float,max_discount_int)
     except (ValueError, TypeError):
-        print("С типами что то пошло не так, проверь ввод")
+        #print("С типами что то пошло не так, проверь ввод")
         return 0
+    return discounted_unsafe(price_float, discount_float, max_discount_int)
 
 
 if __name__ == "__main__":

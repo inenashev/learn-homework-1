@@ -13,6 +13,7 @@
 
 """
 import logging
+import ephem
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
@@ -29,6 +30,34 @@ PROXY = {
     }
 }
 
+def is_valid_name(name):
+    allowed_input = []
+    for e in ephem._libastro.builtin_planets()[:8]:
+        allowed_input.append(e[2])
+    return bool(allowed_input.__contains__(name))
+
+def check_input(name):
+    split = name.split(" ")
+    if len(split) == 2:
+        return split[1]
+    else:
+        return None
+
+def planet(update, context):
+    text = update.message.text
+    checked_text = check_input(text)
+    if checked_text:
+        planet_name = checked_text
+        if is_valid_name(planet_name):
+            pl = getattr(ephem, planet_name)(ephem.now())
+            pl.compute()
+            constellation = str(ephem.constellation(pl))
+            update.message.reply_text(constellation)
+        else:
+            update.message.reply_text("Не нашел имя планеты ввод в формате /planet Mars")
+    else:
+        update.message.reply_text("Не распознал имя планеты, попробуйте еще раз")
+
 
 def greet_user(update, context):
     text = 'Вызван /start'
@@ -39,7 +68,7 @@ def greet_user(update, context):
 def talk_to_me(update, context):
     user_text = update.message.text
     print(user_text)
-    update.message.reply_text(text)
+    update.message.reply_text(user_text)
 
 
 def main():
@@ -47,8 +76,8 @@ def main():
 
     dp = mybot.dispatcher
     dp.add_handler(CommandHandler("start", greet_user))
-    dp.add_handler(MessageHandler(Filters.text, talk_to_me))
-
+    #dp.add_handler(MessageHandler(Filters.text, talk_to_me))
+    dp.add_handler(CommandHandler("planet", planet))
     mybot.start_polling()
     mybot.idle()
 
