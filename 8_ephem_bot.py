@@ -34,7 +34,7 @@ def is_valid_name(name):
     allowed_input = []
     for e in ephem._libastro.builtin_planets()[:8]:
         allowed_input.append(e[2])
-    return bool(allowed_input.__contains__(name))
+    return name in allowed_input
 
 def check_input(name):
     split = name.split(" ")
