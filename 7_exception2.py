@@ -33,7 +33,7 @@ def discounted(price, discount, max_discount=20):
         max_discount_int = int(max_discount)
     except (ValueError, TypeError):
         #print("С типами что то пошло не так, проверь ввод")
-        return 0
+        return -1
     return discounted_unsafe(price_float, discount_float, max_discount_int)
 
 
